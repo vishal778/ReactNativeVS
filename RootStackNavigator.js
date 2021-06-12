@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator} from "@react-navigation/stack";
 import Home from './src/Home/home';
+import lifeScreen from './src/Home/lifeScreen';
 
 const RootStack = createStackNavigator();
 
@@ -19,6 +20,7 @@ const Root = () => {
     return (
         <RootStack.Navigator screenOptions={screenOptionStyle}>
           <RootStack.Screen name = "Home" component = {Home}/>
+          <RootStack.Screen name= "lifeScreen" component = {lifeScreen} />
         </RootStack.Navigator>
     )
 }
