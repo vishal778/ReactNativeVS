@@ -2,7 +2,9 @@
 const INITIAL_STATE  =  {
     email:'',
     password: '',
-    Name: ''
+    Name: '',
+    isDataLoaded: false,
+    apiData: []
 }
 
 
@@ -20,6 +22,9 @@ export default (state=INITIAL_STATE, action) => {
         case 'CHANGE_NAME':
             state = {...state, Name: action.payload }
             break;
+        
+        case 'GET_API_DATA_SUCCESS':
+            state = {...state, apiData: action.payload, isDataLoaded: true }
 
         default: 
              state;

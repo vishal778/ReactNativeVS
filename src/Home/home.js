@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import {View, Text, TextInput, Button} from 'react-native';
 import {connect, useDispatch, useSelector} from 'react-redux';
-import {changeEmail,changePassword,changeName} from '../actions/userActions';
+import {changeEmail,changePassword,changeName,getAPIdata} from '../actions/userActions';
 
-const Home = ({email,changeEmail,Name, changeName, navigation}) => {
+const Home = ({email,changeEmail,Name, changeName, getAPIdata, apiData, isDataLoaded, navigation}) => {
 
   useEffect(()=> {
 
@@ -17,6 +17,7 @@ const Home = ({email,changeEmail,Name, changeName, navigation}) => {
   console.log('name--', Name);
   console.log('pass--', password);
   console.log('email', email);
+  console.log('apidataloaded====',isDataLoaded);
 
     return (
         <View>
@@ -42,6 +43,16 @@ const Home = ({email,changeEmail,Name, changeName, navigation}) => {
              onChangeText={(pwd)=> dispatch(changePassword(pwd))}
            />
 
+        <Button title={'Get data'}
+           onPress={()=> getAPIdata()}
+         />
+        {
+          isDataLoaded && <Text>apiData is loaded</Text>
+        }
+
+     <Button title={'Get counter'}
+           onPress={()=> navigation.navigate('counterScreen')}
+         />
         </View>
     )
 }
@@ -49,7 +60,9 @@ const Home = ({email,changeEmail,Name, changeName, navigation}) => {
 const mapStateToProps = (state) => {
   return {
     email: state.userReducer.email,
-    Name: state.userReducer.Name
+    Name: state.userReducer.Name,
+    apiData: state.userReducer.apiData,
+    isDataLoaded: state.userReducer.isDataLoaded
   }
 }
 
@@ -72,4 +85,4 @@ const mapStateToProps = (state) => {
 
 // export default connect(mapStateToProps,mapDispatchToProps)(Home);
 
-export default connect(mapStateToProps,{changeEmail,changeName})(Home);
+export default connect(mapStateToProps,{changeEmail,changeName,getAPIdata})(Home);
