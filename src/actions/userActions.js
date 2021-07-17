@@ -21,6 +21,7 @@ export const changeName = (Name) => {
     }
 }
 
+//rather than just returning an object, we can return function by using thunk
 export const getAPIdata = () => {
     return async (dispatch) => {
         const response = await axios.get('http://dummy.restapiexample.com/api/v1/employees');

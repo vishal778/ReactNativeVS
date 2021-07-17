@@ -3,7 +3,7 @@ import {View, Text, TextInput, Button} from 'react-native';
 import { connect } from 'react-redux';
 import {changeName} from '../actions/userActions';
 
-class Lifecycle extends Component{
+class Lifecycle extends Component{  //extends React.PureComponent
   constructor(props){
      super(props);
      this.state={
@@ -16,13 +16,13 @@ componentDidMount() {
  console.log('****',this.state);
 }
 
-shouldComponentUpdate(nextProp, nextState) {
+shouldComponentUpdate(nextProp, nextState) { //next
     console.log('--nextprops in should update---',nextProp.Name,'==', this.props.Name);
     console.log('--nextstate in should update--',nextState,'==', this.state);
     return (this.state.counter != nextState.counter || this.props.Name != nextProp.Name)
 }
 
-componentDidUpdate(prevProp, prevState) {
+componentDidUpdate(prevProp, prevState) {  //previous
     console.log('--nextprops in did update---',prevProp.Name,'==', this.props.Name);
     console.log('--nextstate in did update--',prevState,'==', this.state);
     
@@ -32,7 +32,7 @@ componentWillUnmount() {
   console.log('bye bye');
 }
 
-static getDerivedStateFromProps(nextProp, nextState){
+static getDerivedStateFromProps(nextProp, nextState){  //current props and states
    console.log('--nextprops---',nextProp,'==',nextProp.Name);
    console.log('--nextstate--',nextState,'==');
    if(nextProp.Name=='bishal') 
